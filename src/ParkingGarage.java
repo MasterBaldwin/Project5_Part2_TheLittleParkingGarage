@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.text.DecimalFormat;
 
 public class ParkingGarage {
+// Written by: Mike Baldwin
+// Project 5 - Part 2 - The Little Parking Garage
+// Calculates the total hours and cost of a 5-car parking garage
+
 public static void main(String[] args) {
     double hours, charge, totalHours, totalCost;
     DecimalFormat hoursFormat, costFormat;
@@ -13,11 +17,11 @@ public static void main(String[] args) {
 
     hoursText = new JTextField(3);
     totalHoursText = new JTextField(3); totalHoursText.setEditable(false);
-    totalCostText = new JTextField(3); totalCostText.setEditable(false);
+    totalCostText = new JTextField(3);  totalCostText.setEditable(false);
 
     panel = new JPanel();
-    panel.add(new JLabel("Total Hours:")); panel.add(totalHoursText);
-    panel.add(new JLabel("Total Cost:")); panel.add(totalCostText);
+    panel.add(new JLabel("Total Hours:"));  panel.add(totalHoursText);
+    panel.add(new JLabel("Total Cost:"));   panel.add(totalCostText);
     panel.add(new JLabel("Hours Parked:")); panel.add(hoursText);
 
     for (int i = 0; i < 5; i++) {
@@ -25,14 +29,13 @@ public static void main(String[] args) {
         totalHoursText.setText(Double.toString(totalHours));
         totalCostText.setText(Double.toString(totalCost));
         JOptionPane.showMessageDialog(null, panel, "Parking Garage", JOptionPane.QUESTION_MESSAGE);
-        hours = Double.parseDouble(hoursText.getText());
+        hours = clamp(Double.parseDouble(hoursText.getText()), 0, 24);
         charge = clamp(5 + Math.ceil(hours) - 2, 5, 12);
         totalHours += hours;
         totalCost += charge;
     }
 
-    JOptionPane.showMessageDialog(null, "Total Hours " + hoursFormat.format(totalHours) + "\n" + "Total Charge " +
-            costFormat.format(totalCost));
+    JOptionPane.showMessageDialog(null, "Total Hours " + hoursFormat.format(totalHours) + "\n" + "Total Charge " + costFormat.format(totalCost));
 }
 
 /**
