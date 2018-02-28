@@ -5,8 +5,9 @@ public class ParkingGarage {
 public static void main(String[] args) {
     double hours, charge, totalHours, totalCost;
     DecimalFormat hoursFormat, costFormat;
-    JPanel panel;
+    JPanel uneditablePanel, editablePanel;
     JTextField hoursText, totalHoursText, totalCostText;
+    //GridLayout layout = new GridLayout(2, 4, 0, 3);
 
     totalHours = 0; totalCost = 0;
     hoursFormat = new DecimalFormat("##.#"); costFormat = new DecimalFormat("$##.##");
@@ -15,10 +16,11 @@ public static void main(String[] args) {
     totalHoursText = new JTextField(3); totalHoursText.setEditable(false);
     totalCostText = new JTextField(3); totalCostText.setEditable(false);
 
-    panel = new JPanel();
-    panel.add(new JLabel("Total Hours:")); panel.add(totalHoursText);
-    panel.add(new JLabel("Total Cost:")); panel.add(totalCostText);
-    panel.add(new JLabel("Hours Parked:")); panel.add(hoursText);
+    uneditablePanel = new JPanel();
+    uneditablePanel.setLayout(new BoxLayout(uneditablePanel, BoxLayout.X_AXIS));
+    uneditablePanel.add(new JLabel("Total Hours:"));  uneditablePanel.add(totalHoursText);
+    uneditablePanel.add(new JLabel("Total Cost:"));   uneditablePanel.add(totalCostText);
+    uneditablePanel.add(new JLabel("Hours Parked:")); uneditablePanel.add(hoursText);
 
     for (int i = 0; i < 5; i++) {
         hoursText.setText("0");
